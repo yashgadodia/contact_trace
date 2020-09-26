@@ -21,6 +21,10 @@ def evaluate():
 
     return jsonify(result)
 
+# data ={
+#     'number_of_salads': 3, 
+#     'salad_prices_street_map': [['X', '5', '9'], ['19', '9', '2'], ['4', '15', '4'], ['X', 'X', 'X'], ['3', 'X', 'X'], ['7', 'X', '7'], ['15', '15', '3'], ['8', '20', '7'], ['18', '19', '2'], ['15', '14', '4'], ['X', '15', 'X'], ['13', 'X', '7'], ['X', '5', '10']]
+# } 
 def count_cost(data):
 
     street_array = data["salad_prices_street_map"]
@@ -40,13 +44,14 @@ def count_cost(data):
                     salad_count += 1
                 if salad_count == salads:
                     min_cost.append(cost)
-        
-        if len(min_cost) == 0:
-            return {"result": 0}
+        try:
+            all_cost.append(min(min_cost))
+        except ValueError:
+            pass
+    if len(all_cost) == 0:
+        return {"result": 0}
 
-        all_cost.append(min(min_cost))
-
-    return {"result": min(all_cost)} 
+    return {"result": min(all_cost)}
             
         # store_cost = []
         # store = street_array[arr]
@@ -78,15 +83,6 @@ def count_cost(data):
     
 
 # print(count_cost(data))
-
-
-    
-
-            
-
-
-    
-
 
 
     
