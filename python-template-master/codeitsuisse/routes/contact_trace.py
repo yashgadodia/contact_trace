@@ -13,7 +13,7 @@ def evaluate1():
     logging.info("data sent for evaluation {}".format(data))
     # inputValue = data;
     result = contact_trace(data)
-    # logging.info("My result :{}".format(result))
+    logging.info("My result :{}".format(jsonify(result)))
     return jsonify(result);
 
 
@@ -37,6 +37,7 @@ def contact_trace(data):
 
     priority_cluster = []   
     less_cluster = []
+    clusters = []
 
     # check diff between cluster and origin genome (x) and cluster and infected genome (y)
     if data['cluster']:
@@ -78,33 +79,41 @@ def contact_trace(data):
                             [infected_name, item["name"][0:-1]])
                     else:
                         less_cluster.append([infected_name, item["name"]])
+        if diff_infected_origin >= 2:
+            if priority_cluster:
+                for item in priority_cluster:
+                    string = " -> ".join(item)
+                    clusters.append(string)
+            elif less_cluster:
+                if diff_infected_origin == 2:
+                    clusters.append(
+                        " -> ".join([infected_name, data["origin"]["name"]]))
+                for item in less_cluster:
+                    string = " -> ".join(item)
+                    clusters.append(string)
 
-    clusters = []
+        elif diff_infected_origin < 2:
+            clusters.append(
+                " -> ".join([infected_origin_name, data["origin"]["name"]]))
+            if priority_cluster:
+                for item in priority_cluster:
+                    string = " -> ".join(item)
+                    clusters.append(string)
+            elif less_cluster:
+                for item in less_cluster:
+                    string = " -> ".join(item)
+                    clusters.append(string)
+    else:
+        if diff_infected_origin <= 2:
+            clusters.append(" -> ".join([infected_origin_name, data["origin"]["name"]]))
+        
+        else:
+            return []
 
-    if diff_infected_origin >= 2:
-        if priority_cluster:
-            for item in priority_cluster:
-                string = " -> ".join(item)
-                clusters.append(string)
-        elif less_cluster:
-            if diff_infected_origin == 2:
-                clusters.append(
-                    " -> ".join([infected_name, data["origin"]["name"]]))
-            for item in less_cluster:
-                string = " -> ".join(item)
-                clusters.append(string)
 
-    elif diff_infected_origin < 2:
-        clusters.append(
-            " -> ".join([infected_origin_name, data["origin"]["name"]]))
-        if priority_cluster:
-            for item in priority_cluster:
-                string = " -> ".join(item)
-                clusters.append(string)
-        elif less_cluster:
-            for item in less_cluster:
-                string = " -> ".join(item)
-                clusters.append(string)
+    
+
+    
 
     return clusters
 
