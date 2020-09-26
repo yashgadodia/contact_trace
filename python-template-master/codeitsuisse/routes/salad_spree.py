@@ -21,7 +21,7 @@ def evaluate():
     result = count_cost(street_array)
 
     # return result;
-    return json.dumps({"result" : 0})
+    return json.dumps({result : 0})
 
 def count_cost(data):
 
