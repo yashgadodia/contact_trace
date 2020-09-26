@@ -24,9 +24,10 @@ def evaluate():
 
 
 
-def count_cost(street_array):
+def count_cost(data):
 
     all_cost = []
+    street_array = data["salad_prices_street_map"]
 
     for i in range(len(street_array)):
         number_of_salads = 0
@@ -48,7 +49,6 @@ def count_cost(street_array):
     else:
         return 0
         
-print(count_cost(street_array))
 
 
     
