@@ -18,35 +18,35 @@ def evaluate():
     logging.info("data sent for evaluation {}".format(data))
     street_array = data.get("input");
 
-    result = count_cost(street_array)
+    # result = count_cost(street_array)
 
     # return result;
     return jsonify({'result': 0})
 
-def count_cost(data):
+# def count_cost(data):
 
-    all_cost = []
-    street_array = data["salad_prices_street_map"]
+#     all_cost = []
+#     street_array = data["salad_prices_street_map"]
 
-    for i in range(len(street_array)):
-        number_of_salads = 0
-        cost = 0
-        consecutive_salad = 0
-        for j in street_array[i]:
-            if j == 'X':
-                consecutive_salad = 0
-            else:
-                cost += int(j)
-                number_of_salads += 1
-                consecutive_salad += 1
-                if number_of_salads == data["number_of_salads"] and consecutive_salad == data["number_of_salads"]:
-                    all_cost.append(cost)
-                    break
+#     for i in range(len(street_array)):
+#         number_of_salads = 0
+#         cost = 0
+#         consecutive_salad = 0
+#         for j in street_array[i]:
+#             if j == 'X':
+#                 consecutive_salad = 0
+#             else:
+#                 cost += int(j)
+#                 number_of_salads += 1
+#                 consecutive_salad += 1
+#                 if number_of_salads == data["number_of_salads"] and consecutive_salad == data["number_of_salads"]:
+#                     all_cost.append(cost)
+#                     break
 
-    if len(all_cost) > 0:
-        return json.dumps({"result" : min(all_cost)})
-    else:
-        return json.dumps({"result" : 0})
+#     if len(all_cost) > 0:
+#         return json.dumps({"result" : min(all_cost)})
+#     else:
+#         return json.dumps({"result" : 0})
         
 # print(count_cost(data))
 
