@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 @app.route('/contact_trace', methods=['POST'])
 def evaluate1():
     data = request.get_json();
-    # logging.info("data sent for evaluation {}".format(data))
+    logging.info("data sent for evaluation {}".format(data))
     # inputValue = data;
     result = contact_trace(data)
     # logging.info("My result :{}".format(result))
