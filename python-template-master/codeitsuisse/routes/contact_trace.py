@@ -35,48 +35,49 @@ def contact_trace(data):
 
                 diff_infected_origin += 1
 
-    priority_cluster = []
+    priority_cluster = []   
     less_cluster = []
 
     # check diff between cluster and origin genome (x) and cluster and infected genome (y)
-    for item in data['cluster']:
+    if data['cluster']:
+        for item in data['cluster']:
 
-        cluster_elem_genome = item['genome'].split('-')
-        infected_name = data['infected']['name']
+            cluster_elem_genome = item['genome'].split('-')
+            infected_name = data['infected']['name']
 
-        diff_elem_origin = 0
-        diff_elem_infected = 0
+            diff_elem_origin = 0
+            diff_elem_infected = 0
 
-        # diff b/w cluster and origin
-        for i in range(0, len(cluster_elem_genome)):
-            for j in range(0, 3):
-                if cluster_elem_genome[i][j] != origin_genome[i][j]:
-                    if j == 0 and "*" not in item["name"]:
-                        item["name"] += "*"
-                    diff_elem_origin += 1
+            # diff b/w cluster and origin
+            for i in range(0, len(cluster_elem_genome)):
+                for j in range(0, 3):
+                    if cluster_elem_genome[i][j] != origin_genome[i][j]:
+                        if j == 0 and "*" not in item["name"]:
+                            item["name"] += "*"
+                        diff_elem_origin += 1
 
-        # diff b/w cluster and infected
-        for i in range(0, len(cluster_elem_genome)):
-            for j in range(0, 3):
-                if cluster_elem_genome[i][j] != infected_genome[i][j]:
-                    if j == 0 and "*" not in infected_name:
-                        infected_name += "*"
-                    diff_elem_infected += 1
+            # diff b/w cluster and infected
+            for i in range(0, len(cluster_elem_genome)):
+                for j in range(0, 3):
+                    if cluster_elem_genome[i][j] != infected_genome[i][j]:
+                        if j == 0 and "*" not in infected_name:
+                            infected_name += "*"
+                        diff_elem_infected += 1
 
-        # diff b/w x+y and z
-        if (diff_elem_infected + diff_elem_origin) <= diff_infected_origin and diff_infected_origin <= 4 and diff_elem_infected <= 2 and diff_elem_origin <= 2:
-            if diff_elem_infected == 1 and diff_elem_origin == 1:
-                priority_cluster.append(
-                    [infected_name, item["name"], data["origin"]["name"]])
-            elif diff_infected_origin > 2:
-                less_cluster.append(
-                    [infected_name, item["name"], data["origin"]["name"]])
-            else:
-                if "*" in item["name"]:
+            # diff b/w x+y and z
+            if (diff_elem_infected + diff_elem_origin) <= diff_infected_origin and diff_infected_origin <= 4 and diff_elem_infected <= 2 and diff_elem_origin <= 2:
+                if diff_elem_infected == 1 and diff_elem_origin == 1:
+                    priority_cluster.append(
+                        [infected_name, item["name"], data["origin"]["name"]])
+                elif diff_infected_origin > 2:
                     less_cluster.append(
-                        [infected_name, item["name"][0:-1]])
+                        [infected_name, item["name"], data["origin"]["name"]])
                 else:
-                    less_cluster.append([infected_name, item["name"]])
+                    if "*" in item["name"]:
+                        less_cluster.append(
+                            [infected_name, item["name"][0:-1]])
+                    else:
+                        less_cluster.append([infected_name, item["name"]])
 
     clusters = []
 
