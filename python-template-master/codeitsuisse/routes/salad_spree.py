@@ -14,18 +14,12 @@ logger = logging.getLogger(__name__)
 
 @app.route('/salad-spree', methods=['POST'])
 def evaluate():
-    data = request.get_json();
+    data = request.get_json()
     logging.info("data sent for evaluation {}".format(data))
-    street_array = data;
 
-    result = count_cost(street_array)
+    result = count_cost(data)
 
     return result
-
-# data = {
-#     "number_of_salads" : 3,
-#     "salad_prices_street_map" : [["X", "X", "2"], ["2", "3", "X"], ["X", "3", "2"]]
-# }
 
 def count_cost(data):
 
