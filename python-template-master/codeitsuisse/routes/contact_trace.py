@@ -13,7 +13,7 @@ def evaluate():
     logging.info("data sent for evaluation {}".format(data))
     inputValue = data.get("input");
     # result = inputValue * inputValue
-    result = ["hello world"]
+    result = ["hello world 123"]
     logging.info("My result :{}".format(result))
     # return json.dumps(result);
     return result;
