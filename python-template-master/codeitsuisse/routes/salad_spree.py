@@ -12,7 +12,7 @@ from codeitsuisse import app;
 
 logger = logging.getLogger(__name__)
 
-@app.route('/salad_spree', methods=['POST'])
+@app.route('/salad-spree', methods=['POST'])
 def evaluate():
     data = request.get_json();
     logging.info("data sent for evaluation {}".format(data))
