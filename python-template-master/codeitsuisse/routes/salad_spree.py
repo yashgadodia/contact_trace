@@ -42,11 +42,11 @@ def count_cost(data):
                     min_cost.append(cost)
         
         if len(min_cost) == 0:
-            return 0
+            return {"result": 0}
 
         all_cost.append(min(min_cost))
 
-    return {"results": min(all_cost)}
+    return {"result": min(all_cost)} 
             
         # store_cost = []
         # store = street_array[arr]
