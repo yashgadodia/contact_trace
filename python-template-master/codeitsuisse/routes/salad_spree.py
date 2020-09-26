@@ -19,7 +19,7 @@ def evaluate():
 
     result = count_cost(data)
 
-    return result
+    return jsonify(result)
 
 def count_cost(data):
 
