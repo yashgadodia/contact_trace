@@ -11,28 +11,10 @@ logger = logging.getLogger(__name__)
 def evaluate():
     data = request.get_json();
     logging.info("data sent for evaluation {}".format(data))
-    inputValue = data;
+    # inputValue = data;
     result = contact_trace(data)
-    logging.info("My result :{}".format(result))
+    # logging.info("My result :{}".format(result))
     return result;
-
-# import numpy as np
-# data = {
-#     "infected": {
-#         "name": "plastic",
-#         "genome": "acg-gcu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa"
-#     },
-#     "origin": {
-#         "name": "metal",
-#         "genome": "acg-acu-uca-gca-acu-ccc-gua-acg-ccu-uca-gca-acu-cac-gac"
-#     },
-#     "cluster": [
-#         {
-#             "name": "thread",
-#             "genome": "acg-acu-uca-gca-acu-ccc-gua-acg-ccu-uca-gca-acu-cac-gaa"
-#         }
-#     ]
-# }
 
 
 # check diff between infected and origin
