@@ -16,7 +16,7 @@ logger = logging.getLogger(__name__)
 def evaluate():
     data = request.get_json();
     logging.info("data sent for evaluation {}".format(data))
-    street_array = data.get("input");
+    # street_array = data.get("input");
 
     # result = count_cost(street_array)
 
